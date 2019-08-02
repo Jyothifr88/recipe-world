@@ -1,0 +1,21 @@
+
+<% include ./partials/header %>
+<div class="row">
+	<div class="col-md-12"><h1 style="text-align:center">SignUp</h1></div>
+	</div>
+	<div style="width:30%;margin:25px auto;">
+		<form action="/register" method="post">
+			<div class="form-group">
+				<input class="form-control" type="text" name="username" Palceholder="UserName">
+			</div>
+			<div class="form-group">
+				<input class="form-control" type="password" name="password" Palceholder="Password">
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary">SignUp</button>
+			</div>
+		</form>
+		<a href="/recipes">Go Back</a>
+	</div>
+</div>
+<% include ./partials/footer %>

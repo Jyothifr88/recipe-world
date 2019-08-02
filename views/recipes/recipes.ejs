@@ -1,0 +1,41 @@
+<% include ../partials/header.ejs %>	
+<div class="container">
+	<header class="jumbotron">
+		<div class="container">
+			<h3>Recipes World</h3>
+	        <p>	Hello and thank you for stopping by <strong>Recipes World</strong>. Find and share  recipes for the home 					cooking</p>
+			<p>
+				<a class="btn btn-primary btn-large" 	href="/recipes/new">Add Recipes</a>
+			</p>
+		</div>
+	
+	
+    </header>
+	<div class="row text-center" style="display:flex; flex-wrap:wrap;">
+		 <% recipes.forEach(function(recipe){%>
+			<div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+				
+				<div class="card" >
+  <img src="<%= recipe.image %>" class="card-img-top" alt="Card-image">
+  <div class="card-body">
+    <h5 class="card-title"><%= recipe.name %></h5>
+    
+    <a href="/recipes/<%=recipe._id%>" class="btn btn-primary">More Info</a>
+  </div>
+</div>
+				
+				
+				
+			</div>
+			    
+	   <%});%>
+		
+		
+	</div>
+   
+	  
+	
+    
+</div>
+
+<% include ../partials/footer.ejs %>

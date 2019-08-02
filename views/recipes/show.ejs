@@ -1,0 +1,78 @@
+<% include ../partials/header.ejs %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3">
+			<h5> Ingredients </h5>
+			<div class="list=group">
+				<li class="list-group-item"><p><%=recipe.ingredients%></p></li>
+				
+				
+			</div>
+			
+			
+		</div>
+		<div class="col-md-9">
+			<div class="thumbnail">
+				<img class="image-responsive" src="<%= recipe.image %>">
+				<div class="caption-full">
+					<h4><a><%=recipe.name%></a></h4>
+					<h6>
+						Instructions
+					</h6>
+					<p><%=recipe.description%></p>
+					<p>
+						<em>Submitted By <%=recipe.author.username %></em>
+					</p>
+					<!-- To hide edit and delete button from nonlogged users:ie, if there is user sign in and curret user-->
+					<%if(currentUser && recipe.author.id.equals(currentUser._id)){%>
+						<a class="btn btn-sm btn-warning" href="/recipes/<%=recipe._id%>/edit">Edit</a>
+						<form class="delete-form" action="/recipes/<%=recipe._id%>?_method=DELETE", method=POST>
+							<button class="btn btn-sm btn-danger">
+								DELETE
+							</button>
+						</form>
+					
+					<%}%>
+					
+					
+				</div>
+			</div>
+			<div class="well">
+				<p class="text-right"><a class="btn btn-success btn-large" 	                                  								href="/recipes/<%=recipe._id%>/comments/new"> Add Comment</a></p>
+				<hr>
+				<% recipe.comments.forEach(function(comment){%>
+				<div class="row">
+					<div clss="col-md-12">
+						<strong><%=comment.author.username %></strong>
+						
+						<p>	<%=comment.text %></p>
+						<%if(currentUser && comment.author.id.equals(currentUser._id)){%>
+							<a class="btn btn-sm btn-warning" 
+							   href="/recipes/<%=recipe._id%>/comments/<%=comment._id%>/edit">Edit</a>
+							<form class="delete-form" action="/recipes/<%=recipe._id%>/comments/<%=comment._id%>?
+								_method=DELETE" method=post>
+								<button class="btn btn-sm btn-danger">Delete</button>
+							</form>
+						<%}%>
+					</div>
+				</div>
+				
+				<%}) %>
+			</div>
+			
+		</div>
+		
+	</div>
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+<% include ../partials/footer.ejs %>
